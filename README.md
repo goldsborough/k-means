@@ -2,10 +2,11 @@
 
 <img alt="license" src="https://img.shields.io/github/license/mashape/apistatus.svg"/>
 
-This repository contains code referenced in my blog post [Exploring k-means in Python, C++ and
-CUDA], where I implement k-means in a variety of platforms. In this post I show how CUDA
-implementations of k-means can outperform scikit-learn and scipy in performance by a factor of 72
-and 90, respectively.
+This repository contains code referenced in my blog
+post
+[Exploring k-means in Python, C++ and CUDA](http://www.goldsborough.me/c++/python/cuda/2017/09/10/20-32-46-exploring_k-means_in_python,_c++_and_cuda/),
+where I implement k-means in a variety of platforms. In this post I show how CUDA implementations of
+k-means can outperform scikit-learn and scipy in performance by a factor of 72 and 90, respectively.
 
 The code is not particularly tidy, but gives an idea of how to implement k-means efficiently on a GPU.
 
