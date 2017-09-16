@@ -47,7 +47,7 @@ parser.add_argument('-d', '--data', required=True)
 parser.add_argument('-k', '--clusters', type=int, required=True)
 parser.add_argument('-s', '--show', action='store_true')
 parser.add_argument('-i', '--iterations', type=int, default=300)
-parser.add_argument('-r', '--runs', type=int, default=10)
+parser.add_argument('-r', '--runs', type=int, default=1)
 options = parser.parse_args()
 
 input_values = np.loadtxt(options.data)
