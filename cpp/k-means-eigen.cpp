@@ -10,9 +10,7 @@
 #include <utility>
 #include <vector>
 
-
-Eigen::MatrixXd k_means(const Eigen::MatrixXd& data,
-                        uint16_t k,
+Eigen::ArrayXXd k_means(const Eigen::ArrayXXd &data, uint16_t k,
                         size_t number_of_iterations) {
   static std::random_device seed;
   static std::mt19937 random_number_generator(seed());
@@ -32,8 +30,9 @@ Eigen::MatrixXd k_means(const Eigen::MatrixXd& data,
   for (size_t iteration = 0; iteration < number_of_iterations; ++iteration) {
     // This will be optimized nicely by Eigen because it's a large and
     // arithmetic-intense expression tree.
-    auto distances = (data_x.rowwise() - means.col(0).transpose()).square() +
-                     (data_y.rowwise() - means.col(1).transpose()).square();
+    Eigen::ArrayXXd distances =
+        (data_x.rowwise() - means.col(0).transpose()).square() +
+        (data_y.rowwise() - means.col(1).transpose()).square();
     // Unfortunately, Eigen has no vectorized way of retrieving the argmin for
     // every row, so we'll have to loop, and iteratively compute the new
     // centroids.
@@ -51,7 +50,7 @@ Eigen::MatrixXd k_means(const Eigen::MatrixXd& data,
   return means;
 }
 
-int main(int argc, const char* argv[]) {
+int main(int argc, const char *argv[]) {
   if (argc < 3) {
     std::cerr << "usage: k_means <data-file> <k> [iterations] [runs]"
               << std::endl;
@@ -73,7 +72,7 @@ int main(int argc, const char* argv[]) {
     temporary.emplace_back(x, y);
   }
 
-  Eigen::MatrixXd data(temporary.size(), 2);
+  Eigen::ArrayXXd data(temporary.size(), 2);
   for (size_t row = 0; row < data.rows(); ++row) {
     data.row(row) << temporary[row].first, temporary[row].second;
   }
