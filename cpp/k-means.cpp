@@ -10,16 +10,16 @@
 #include <vector>
 
 struct Point {
-  double x{0}, y{0};
+  float x{0}, y{0};
 };
 
 using DataFrame = std::vector<Point>;
 
-double square(double value) {
+float square(float value) {
   return value * value;
 }
 
-double squared_l2_distance(Point first, Point second) {
+float squared_l2_distance(Point first, Point second) {
   return square(first.x - second.x) + square(first.y - second.y);
 }
 
@@ -40,10 +40,10 @@ DataFrame k_means(const DataFrame& data,
   for (size_t iteration = 0; iteration < number_of_iterations; ++iteration) {
     // Find assignments.
     for (size_t point = 0; point < data.size(); ++point) {
-      double best_distance = std::numeric_limits<double>::max();
+      auto best_distance = std::numeric_limits<float>::max();
       size_t best_cluster = 0;
       for (size_t cluster = 0; cluster < k; ++cluster) {
-        const double distance =
+        const float distance =
             squared_l2_distance(data[point], means[cluster]);
         if (distance < best_distance) {
           best_distance = distance;

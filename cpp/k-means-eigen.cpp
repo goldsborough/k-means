@@ -62,11 +62,11 @@ int main(int argc, const char* argv[]) {
   const auto iterations = (argc >= 4) ? std::atoi(argv[3]) : 300;
   const auto number_of_runs = (argc >= 5) ? std::atoi(argv[4]) : 10;
 
-  std::vector<std::pair<double, double>> temporary;
+  std::vector<std::pair<float, float>> temporary;
   std::ifstream stream(argv[1]);
   std::string line;
   while (std::getline(stream, line)) {
-    double x, y;
+    float x, y;
     uint16_t label;
     std::istringstream line_stream(line);
     line_stream >> x >> y >> label;
